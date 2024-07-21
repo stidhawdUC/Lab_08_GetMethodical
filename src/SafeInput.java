@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-
 public class SafeInput {
 
     public static String getNonZeroLenString(Scanner pipe, String prompt)
@@ -29,7 +28,7 @@ public class SafeInput {
             else
             {
               trash = pipe.nextLine();
-                System.out.println("Please enter a valid integer, not " + trash + ".");
+                System.out.println("\nPlease enter a valid integer, not " + trash + ".");
             }
         }while(!ready);
         return retInt;
@@ -51,7 +50,7 @@ public class SafeInput {
             else
             {
                 trash = pipe.nextLine();
-                System.out.println("Please enter a valid integer, not " + trash + ".");
+                System.out.println("\nPlease enter a valid integer, not " + trash + ".");
             }
         }while(!ready);
         return retDouble;
@@ -74,14 +73,14 @@ public class SafeInput {
                 }
                 else
                 {
-                    System.out.println("Please enter an integer in the valid range ["
+                    System.out.println("\nPlease enter an integer in the valid range ["
                     + lo + "-" + hi + "], not " + retRangedInt + ".");
                 }
             }
             else
             {
                 trash = pipe.nextLine();
-                System.out.println("Please enter a valid integer [" + lo + "-" + hi + "], not " + trash + ".");
+                System.out.println("\nPlease enter a valid integer [" + lo + "-" + hi + "], not " + trash + ".");
             }
         }while(!ready);
         return retRangedInt;
@@ -103,18 +102,56 @@ public class SafeInput {
                 }
                 else
                 {
-                    System.out.println("Please enter an integer in the valid range ["
+                    System.out.println("\nPlease enter an integer in the valid range ["
                             + lo + "-" + hi + "], not " + retRangedDouble + ".");
                 }
             }
             else
             {
                 trash = pipe.nextLine();
-                System.out.println("Please enter a valid integer [" + lo + "-" + hi + "], not " + trash + ".");
+                System.out.println("\nPlease enter a valid integer [" + lo + "-" + hi + "], not " + trash + ".");
             }
         }while(!ready);
         return retRangedDouble;
     }
-
+    public static boolean getYNConfirm(Scanner pipe, String prompt)
+    {
+     boolean retBoo = false;
+     boolean ready = false;
+     String booAnswer = "";
+        do{
+            System.out.print("\n" + prompt + ": ");
+            booAnswer = pipe.nextLine();
+            if(booAnswer.equalsIgnoreCase("Y"))
+            {
+                retBoo = true;
+                ready = true;
+            }
+            else if(booAnswer.equalsIgnoreCase("N"))
+            {
+                ready = true;
+            }
+            // else System.out.println("Please enter [yY/nN]."); is this necessary?
+        }while(!ready);
+        return retBoo;
+    }
+    public static String getRegExString(Scanner pipe, String prompt, String regEx)
+    {
+        boolean ready = false;
+        String retReg = "";
+        //String trash = "";
+                do{
+                    System.out.print(prompt + " [" + regEx + "] : ");
+                    retReg = pipe.nextLine();
+                    if(retReg.matches(regEx))
+                    {
+                        ready = true;
+                    }
+                    else{
+                        System.out.println("Your response must match the pattern " + regEx + ".");
+                    }
+                }while(!ready);
+                return retReg;
+    }
 
 }
