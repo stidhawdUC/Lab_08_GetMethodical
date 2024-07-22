@@ -139,7 +139,7 @@ public class SafeInput {
     {
         boolean ready = false;
         String retReg = "";
-        //String trash = "";
+        String trash = "";
                 do{
                     System.out.print(prompt + " [" + regEx + "] : ");
                     retReg = pipe.nextLine();
