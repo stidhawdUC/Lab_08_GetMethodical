@@ -120,7 +120,7 @@ public class SafeInput {
      boolean ready = false;
      String booAnswer = "";
         do{
-            System.out.print("\n" + prompt + ": ");
+            System.out.print("\n" + prompt + " [Y/N]: ");
             booAnswer = pipe.nextLine();
             if(booAnswer.equalsIgnoreCase("Y"))
             {
@@ -130,28 +130,40 @@ public class SafeInput {
             else if(booAnswer.equalsIgnoreCase("N"))
             {
                 ready = true;
-            }
-            // else System.out.println("Please enter [yY/nN]."); is this necessary?
+            } else System.out.println("Please enter [yY/nN]."); // is this necessary?
         }while(!ready);
         return retBoo;
     }
-    public static String getRegExString(Scanner pipe, String prompt, String regEx)
+    public static String getRegExString(Scanner pipe, String prompt, String regExPattern)
     {
         boolean ready = false;
         String retReg = "";
         String trash = "";
                 do{
-                    System.out.print(prompt + " [" + regEx + "] : ");
+                    System.out.print("\n" + prompt + ": ");
                     retReg = pipe.nextLine();
-                    if(retReg.matches(regEx))
+                    if(retReg.matches(regExPattern))
                     {
                         ready = true;
                     }
                     else{
-                        System.out.println("Your response must match the pattern " + regEx + ".");
+                        System.out.println("Your response must match the pattern " + regExPattern + ".");
                     }
                 }while(!ready);
                 return retReg;
+    }
+    public static void prettyHeader(String msg)
+    {
+        for(int row = 0; row < 3; row++)
+        {
+            if(row == 1)
+            {
+                System.out.print(msg);
+            }else{
+                for(int star = 0; star < 60; star++) System.out.print("*");
+            }
+            System.out.println();
+        }
     }
 
 }
